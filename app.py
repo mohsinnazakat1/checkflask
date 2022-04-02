@@ -15,7 +15,7 @@ def predict():
   sample_file = sr.AudioFile(audiofile) 
   with sample_file as source:
     sample_audio = recognizer.record(source)
-  transcription = recognizer.recognize_google(audio_data=sample_audio)
+  transcription = recognizer.recognize_google(audio_data=sample_audio, language="en-US")
   unseen_data = pd.DataFrame([(transcription)],columns=['Transcription'])
   unseen_data['Transcription'] = unseen_data['Transcription'].apply(lambda x: " ".join(x.lower() for x in x.split())) 
   unseen_data['Transcription'] = unseen_data['Transcription'].map(lambda x: re.sub(r'\W+', ' ', x)) 
